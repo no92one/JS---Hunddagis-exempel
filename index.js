@@ -1,17 +1,14 @@
 import PromptSync from "prompt-sync";
 import Hundar from "./dogs.js";
-const prompt = PromptSync({ sigint: true })
 
+const prompt = PromptSync({ sigint: true })
 const hundLista = new Hundar()
 
 
-meny()
+let run = true
 
-function meny() {
-  let run = true
-
-  while (run) {
-    console.log(`
+while (run) {
+  console.log(`
 Meny
 
 1. Lägg till en ny hund
@@ -21,38 +18,38 @@ Meny
 A. Avsluta programmet
 
 Val ->`);
-    const val = prompt()
 
-    switch (val.trim().toUpperCase()) {
-      case "1":
-        hundLista.addDogToList(prompt("Vad heter den nya hunden? -> "))
-        break;
-      case "2":
-        checkMeny();
-        break;
-      case "3":
-        removeDog();
-        break;
-      case "4":
-        hundLista.skrivUtHundar();
-        break;
-      case "A":
-        console.log("Programmet avslutas!");
-        run = false;
-        break;
-      default:
-        console.log("Du måste välja mellan 1, 2, 3 eller A!");
-    }
+  const val = prompt()
 
+  switch (val.trim().toUpperCase()) {
+    case "1":
+      hundLista.addDogToList(prompt("Vad heter den nya hunden? -> "))
+      break;
+    case "2":
+      checkMeny();
+      break;
+    case "3":
+      removeDog();
+      break;
+    case "4":
+      hundLista.skrivUtHundar();
+      break;
+    case "A":
+      console.log("Programmet avslutas!");
+      run = false;
+      break;
+    default:
+      console.log("Du måste välja mellan 1, 2, 3 eller A!");
   }
 }
+
 
 
 function removeDog() {
   hundLista.skrivUtHundar()
   const val = prompt("Skriv in index för den hunden du vill ta bort ->")
 
-  if (Number(val).toString() === "NaN" || Number(val).toString() === "undefined") {
+  if (Number(val).toString() === "NaN") {
     console.log("Måste skriva in ett tal!");
   }
   if (val <= hundLista.hundLista.length) {
@@ -72,7 +69,7 @@ function checkMeny() {
 
     if (val.trim().toUpperCase() === "B") {
       run = false;
-    } else if (Number(val).toString() === "NaN" || Number(val).toString() === "undefined") {
+    } else if (Number(val).toString() === "NaN") {
       console.log("Måste skriva in ett tal!");
     }
     if (val <= hundLista.getLength() && val >= 1) {
