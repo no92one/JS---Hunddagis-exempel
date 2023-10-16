@@ -4,7 +4,7 @@ export default class Hund {
 
   constructor(name, checkedIn = false) {
     this.#namn = name;
-    this.#checkedIn = checkedIn
+    this.#checkedIn = checkedIn;
   }
 
   get name() {
@@ -12,21 +12,23 @@ export default class Hund {
   }
 
   get checkedIn() {
-    return this.#checkedIn
+    return this.#checkedIn;
   }
 
   set name(newName) {
-    this.#namn = newName
+    this.#namn = newName;
   }
 
   checkInAndOut() {
     this.#checkedIn = !this.#checkedIn;
   }
 
+  // Skapar ett objekt med denna hundens egenskaps information. 
+  // Används när vi ska skicka in till "Hundar.json". 
   dataInfo() {
     return {
       "name": this.#namn,
       "checkedIn": this.#checkedIn
-    }
+    };
   }
 }
